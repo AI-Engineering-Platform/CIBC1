@@ -28,34 +28,6 @@ Which models those notebooks call is **not** defined here; it comes from `.env` 
 | `find_user_id`, `list_orders`, `get_order` | READ |
 | `cancel_order`, `update_shipping` | WRITE |
 
----
-
-## Who knows what
-
-SynBench uses several LLM roles. They share the same API credentials, but **different prompts and hidden fields**.
-That knowledge hierarchy is intentional: the generator can write a short oracle because it sees IDs; the agent must elicit details from conversation.
-
-
-| Role | Prompt / config source | Sees | Hidden |
-|------|------------------------|------|--------|
-| **Generator LLM** | `PromptBuilder` + `generation.yaml` | Policy, tool specs, task-type rules, seed tasks, sampled `entity_context` (IDs + related user), personality style | — (most privileged; writes the oracle) |
-| **User simulator** | `user_simulator.yaml` + `user_scenario` | `user_name`, style catalog text, `instructions`, `initial_message`, live transcript | Policy, tools, DB, `task.description` |
-| **Agent under test** | `agent_system_prompt` (`agent_role` + `policy.md`) | Policy, tools, customer messages | `instructions`, `description`, oracle actions, raw DB |
-| **Planner / critic** (notebook 4) | Policy excerpts | Policy, live conversation (planner) / plan + tool trace + draft reply (critic) | `instructions`, `description`, oracle actions, raw DB |
-
-<div align="center">
-  <img src="../../images/knowledge_hierarchy.png" alt="Knowledge hierarchy across SynBench LLM roles" width="900">
-</div>
-
-The figure shows the same hierarchy as a flow: the generator sees the sampled IDs and writes the oracle, the simulator only ever sees its slice of the task (`user_scenario`), and the agent under test sees policy plus customer messages and reaches the database only through tools. Solid arrows are live dialogue and tool calls; dashed arrows are data that code moves between roles. Regenerate it with `uv run --with matplotlib python images/knowledge_hierarchy_figure.py`.
-
-Dialogue details:
-
-- Turn 0 is `user_scenario.initial_message` sent **as-is**. The simulator does not rewrite it.
-- Later customer turns come from the user-simulator LLM, which should reveal IDs when asked, not dump everything unprompted.
-- The simulator ends the conversation with exactly `[[DONE]]`.
-
----
 
 ## Domain folder map
 

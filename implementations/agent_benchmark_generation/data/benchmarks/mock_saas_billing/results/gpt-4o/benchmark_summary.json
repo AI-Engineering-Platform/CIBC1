@@ -1,9 +1,9 @@
 {
   "n_tasks": 25,
-  "pass_at_1": 0.76,
-  "mean_db_reward": 0.92,
-  "mean_communicate_reward": 0.76,
-  "mean_dialogue_turns": 3.72,
+  "pass_at_1": 0.8,
+  "mean_db_reward": 0.88,
+  "mean_communicate_reward": 0.92,
+  "mean_dialogue_turns": 3.4,
   "runs": [
     {
       "task_id": "scale_inquiry_rushed",
@@ -17,21 +17,21 @@
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 5
+      "dialogue_turns": 3
     },
     {
       "task_id": "scale_inquiry_rule_breaker",
       "reward": 0.0,
       "db_reward": 1.0,
       "communicate_reward": 0.0,
-      "dialogue_turns": 2
+      "dialogue_turns": 5
     },
     {
       "task_id": "scale_inquiry_inconsistent",
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 4
+      "dialogue_turns": 3
     },
     {
       "task_id": "scale_inquiry_domain_expert",
@@ -42,51 +42,51 @@
     },
     {
       "task_id": "scale_void_invoice_rushed",
-      "reward": 1.0,
-      "db_reward": 1.0,
+      "reward": 0.0,
+      "db_reward": 0.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 3
+      "dialogue_turns": 2
     },
     {
       "task_id": "scale_void_invoice_anxious",
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 3
+      "dialogue_turns": 2
     },
     {
       "task_id": "scale_void_invoice_rule_breaker",
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 3
+      "dialogue_turns": 2
     },
     {
       "task_id": "scale_void_invoice_inconsistent",
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 4
+      "dialogue_turns": 3
     },
     {
       "task_id": "scale_void_invoice_domain_expert",
-      "reward": 1.0,
-      "db_reward": 1.0,
+      "reward": 0.0,
+      "db_reward": 0.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 3
+      "dialogue_turns": 2
     },
     {
       "task_id": "scale_refuse_void_rushed",
       "reward": 0.0,
       "db_reward": 0.0,
-      "communicate_reward": 0.0,
+      "communicate_reward": 1.0,
       "dialogue_turns": 5
     },
     {
       "task_id": "scale_refuse_void_anxious",
-      "reward": 0.0,
-      "db_reward": 0.0,
-      "communicate_reward": 0.0,
+      "reward": 1.0,
+      "db_reward": 1.0,
+      "communicate_reward": 1.0,
       "dialogue_turns": 4
     },
     {
@@ -98,16 +98,16 @@
     },
     {
       "task_id": "scale_refuse_void_inconsistent",
-      "reward": 0.0,
+      "reward": 1.0,
       "db_reward": 1.0,
-      "communicate_reward": 0.0,
-      "dialogue_turns": 3
+      "communicate_reward": 1.0,
+      "dialogue_turns": 4
     },
     {
       "task_id": "scale_refuse_void_domain_expert",
-      "reward": 0.0,
+      "reward": 1.0,
       "db_reward": 1.0,
-      "communicate_reward": 0.0,
+      "communicate_reward": 1.0,
       "dialogue_turns": 2
     },
     {
@@ -122,7 +122,7 @@
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 5
+      "dialogue_turns": 4
     },
     {
       "task_id": "scale_update_billing_email_rule_breaker",
@@ -136,14 +136,14 @@
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 4
+      "dialogue_turns": 5
     },
     {
       "task_id": "scale_update_billing_email_domain_expert",
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 5
+      "dialogue_turns": 3
     },
     {
       "task_id": "scale_update_seats_rushed",
@@ -157,7 +157,7 @@
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 5
+      "dialogue_turns": 4
     },
     {
       "task_id": "scale_update_seats_rule_breaker",
@@ -171,7 +171,7 @@
       "reward": 1.0,
       "db_reward": 1.0,
       "communicate_reward": 1.0,
-      "dialogue_turns": 5
+      "dialogue_turns": 4
     },
     {
       "task_id": "scale_update_seats_domain_expert",
