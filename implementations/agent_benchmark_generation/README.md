@@ -28,6 +28,13 @@ SynBench builds **τ-bench–style** benchmarks for customer-service agents that
 - Outcome-first scoring (`DB` + `COMMUNICATE`, matching τ-bench semantics)
 
 
+
+<div align="center">
+  <img src="./images/synbench_components.png" alt="Synbench Components" width="900">
+</div>
+
+
+
 ## Pipeline steps (overview)
 
 ```
