@@ -54,7 +54,7 @@ def preprocess_data_for_alpha_precision_eval(
         categorical_synthetic_data.to_numpy().astype("str"),
     )
 
-    return one_hot_encode_categoricals_and_merge_with_numerical(  # type: ignore[no-any-return]
+    return one_hot_encode_categoricals_and_merge_with_numerical(
         categorical_real_numpy,
         categorical_synthetic_numpy,
         numerical_real_numpy,
