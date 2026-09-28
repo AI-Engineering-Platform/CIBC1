@@ -75,7 +75,7 @@ Use the large model as a **teacher** (and judge). Use the 0.5B model as the **st
 
 Having a small fine-tuned model on the top of a RAG system:
 
-- FT is a better choice for fixed data sources (fix document), and RAG is more suitable for constantly changing data. 
+- FT is a better choice for fixed data sources (fix document), and RAG is more suitable for constantly changing data.
 - You can fine-tune model to adhere to a style or behaviour, or even teach it to use the provided retrieved text from the RAG pipeline
 
 
@@ -181,4 +181,3 @@ Practical constraints on CPU / small GPU:
 SFT will not add knowledge the teacher never wrote. It **concentrates** style, grounding, and format from the dataset.
 
 ---
-
