@@ -153,7 +153,7 @@ Each **Task** contains:
 ## Who knows what
 
 SynBench uses several LLM roles and uses different LLMs. These LLMs have **different prompts and hidden fields**.
-That knowledge hierarchy is intentional: the generator can write a short oracle because it sees IDs, and task description, however, the agent must elicit details from conversation only.
+That knowledge hierarchy is intentional: the generator can write a short oracle because it sees IDs, and task description, and has access to automatic policy checks (`verify.py` and eligibility constraints as defined in `generation.yaml`) during generation, however, the agent must elicit details from conversation only, and respect the policies according to `policy.md`.
 
 
 | Role | Prompt / config source | Sees | Hidden |
