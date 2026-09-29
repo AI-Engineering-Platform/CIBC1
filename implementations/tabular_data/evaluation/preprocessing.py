@@ -33,13 +33,21 @@ def preprocess_data_for_alpha_precision_eval(
     -------
         Preprocessed real and synthetic dataframes, in that order.
     """
-    numerical_real_data, categorical_real_data = extract_columns_based_on_meta_info(real_data, meta_info)
+    numerical_real_data, categorical_real_data = extract_columns_based_on_meta_info(
+        real_data,
+        meta_info,
+    )
     numerical_synthetic_data, categorical_synthetic_data = extract_columns_based_on_meta_info(
         synthetic_data,
         meta_info,
     )
 
-    numerical_real_numpy, categorical_real_numpy, numerical_synthetic_numpy, categorical_synthetic_numpy = (
+    (
+        numerical_real_numpy,
+        categorical_real_numpy,
+        numerical_synthetic_numpy,
+        categorical_synthetic_numpy,
+    ) = (
         numerical_real_data.to_numpy(),
         categorical_real_data.to_numpy().astype("str"),
         numerical_synthetic_data.to_numpy(),
