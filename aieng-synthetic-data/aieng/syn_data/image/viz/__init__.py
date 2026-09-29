@@ -447,3 +447,189 @@ def save_judge_artifact(
     payload = judgment.to_dict() if hasattr(judgment, "to_dict") else dict(judgment)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return path
+
+
+_OUTCOME_STYLE = {
+    "accept": ("tab:green", "accepted"),
+    "retry": ("tab:orange", "sent to retry"),
+    "reject": ("tab:red", "rejected"),
+    "surplus": ("tab:gray", "passed after target met (not exported)"),
+}
+_OUTCOME_ORDER = ["accept", "retry", "reject", "surplus"]
+
+
+def _classes_in(rows: list[dict[str, Any]]) -> list[str]:
+    return sorted({str(r.get("anomaly_id", "?")) for r in rows})
+
+
+def plot_embedding_histograms(
+    judged_rows: list[dict[str, Any]],
+    *,
+    min_real_sim: float,
+    max_neighbor_sim: float,
+    title: str | None = None,
+) -> tuple[Figure, Any]:
+    """Histogram the two embedding-gate signals per class, stacked by outcome.
+
+    Left: CLIP cosine sim to the nearest *real* same-class image (fidelity
+    proxy; gate needs ≥ ``min_real_sim``). Right: sim to the nearest image in
+    real ∪ accepted synth (novelty proxy; gate needs ≤ ``max_neighbor_sim``).
+    Dashed lines are the exact configured thresholds.
+    """
+    rows = [
+        r
+        for r in judged_rows
+        if r.get("embed_real_sim_global") is not None
+        and r.get("embed_neighbor_sim") is not None
+    ]
+    classes = _classes_in(rows) or ["(none)"]
+    fig, axes = plt.subplots(
+        len(classes), 2, figsize=(11, 3.2 * len(classes)), squeeze=False
+    )
+    signals = [
+        (
+            "embed_real_sim_global",
+            min_real_sim,
+            "≥",
+            "Fidelity proxy: sim to nearest real same-class image",
+        ),
+        (
+            "embed_neighbor_sim",
+            max_neighbor_sim,
+            "≤",
+            "Novelty proxy: sim to nearest real ∪ accepted synth",
+        ),
+    ]
+    for i, cls in enumerate(classes):
+        cls_rows = [r for r in rows if str(r.get("anomaly_id")) == cls]
+        for j, (key, thr, op, label) in enumerate(signals):
+            ax = axes[i, j]
+            values = [float(r[key]) for r in cls_rows] + [thr]
+            lo, hi = min(values) - 0.02, max(values) + 0.02
+            bins = np.linspace(lo, hi, 31)
+            stacks, colors, labels = [], [], []
+            for outcome in _OUTCOME_ORDER:
+                vals = [float(r[key]) for r in cls_rows if r.get("outcome") == outcome]
+                if vals:
+                    color, name = _OUTCOME_STYLE[outcome]
+                    stacks.append(vals)
+                    colors.append(color)
+                    labels.append(f"{name} (n={len(vals)})")
+            if stacks:
+                ax.hist(
+                    stacks,
+                    bins=bins,
+                    stacked=True,
+                    color=colors,
+                    label=labels,
+                    alpha=0.85,
+                )
+            ax.axvline(thr, color="k", ls="--", lw=1)
+            ax.text(
+                thr,
+                0.97,
+                f" gate {op} {thr:.2f}",
+                transform=ax.get_xaxis_transform(),
+                fontsize=8,
+                va="top",
+            )
+            ax.set_title(f"{cls} — {label}", fontsize=9)
+            ax.set_xlabel("CLIP cosine similarity")
+            ax.set_ylabel("judged edits")
+            if j == 1 and stacks:
+                ax.legend(fontsize=7, loc="best", frameon=False)
+    fig.suptitle(
+        title
+        or "Embedding-gate signals of judged edits (practical embedding-based proxies)",
+        fontsize=11,
+    )
+    fig.tight_layout()
+    return fig, axes
+
+
+def _pca_2d(x: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Project rows of ``x`` onto their top-2 principal components."""
+    centered = x - x.mean(axis=0, keepdims=True)
+    _u, s, vt = np.linalg.svd(centered, full_matrices=False)
+    var = (s**2) / max(float((s**2).sum()), 1e-12)
+    return centered @ vt[:2].T, var[:2]
+
+
+def plot_embedding_pca(
+    real_vectors: dict[str, np.ndarray],
+    embedding_rows: list[dict[str, Any]],
+    *,
+    title: str | None = None,
+) -> tuple[Figure, Any]:
+    """2-D PCA of CLIP embeddings: real class images vs judged edits (per class).
+
+    PCA is fit per class on the real same-class images plus every judged edit
+    of that class. This is a lossy 2-D view for intuition: the embedding gate
+    thresholds are applied to cosine similarity in the full CLIP space, so no
+    exact safe-zone boundary can be drawn here.
+    """
+    classes = sorted(
+        set(real_vectors) | {str(r.get("anomaly_id")) for r in embedding_rows}
+    )
+    classes = [c for c in classes if c != "None"] or ["(none)"]
+    fig, axes = plt.subplots(
+        1, len(classes), figsize=(6.5 * len(classes), 5.5), squeeze=False
+    )
+    for i, cls in enumerate(classes):
+        ax = axes[0, i]
+        real = np.asarray(real_vectors.get(cls, np.zeros((0, 0))), dtype=np.float32)
+        rows = [
+            r
+            for r in embedding_rows
+            if str(r.get("anomaly_id")) == cls and r.get("vector")
+        ]
+        synth = np.asarray([r["vector"] for r in rows], dtype=np.float32)
+        parts = [a for a in (real, synth) if a.size]
+        if not parts or sum(len(a) for a in parts) < 3:
+            ax.text(
+                0.5, 0.5, f"{cls}: not enough embeddings yet", ha="center", va="center"
+            )
+            ax.axis("off")
+            continue
+        coords, var = _pca_2d(np.concatenate(parts, axis=0))
+        n_real = len(real) if real.size else 0
+        if n_real:
+            ax.scatter(
+                coords[:n_real, 0],
+                coords[:n_real, 1],
+                c="lightgray",
+                edgecolors="dimgray",
+                linewidths=0.5,
+                s=40,
+                marker="o",
+                label=f"real {cls} images (n={n_real})",
+            )
+        synth_xy = coords[n_real:]
+        for outcome in _OUTCOME_ORDER:
+            idx = [k for k, r in enumerate(rows) if r.get("outcome") == outcome]
+            if not idx:
+                continue
+            color, name = _OUTCOME_STYLE[outcome]
+            ax.scatter(
+                synth_xy[idx, 0],
+                synth_xy[idx, 1],
+                c=color,
+                s=24,
+                alpha=0.8,
+                edgecolors="none",
+                label=f"{name} (n={len(idx)})",
+            )
+        ax.set_xlabel(f"PC1 ({100 * var[0]:.0f}% of variance)")
+        ax.set_ylabel(
+            f"PC2 ({100 * var[1]:.0f}% of variance)" if len(var) > 1 else "PC2"
+        )
+        ax.set_title(cls, fontsize=10)
+        ax.legend(fontsize=7, loc="best", frameon=False)
+    fig.suptitle(
+        title
+        or "CLIP embeddings, 2-D PCA — real images vs judged edits\n"
+        "(lossy view; the gate's thresholds are applied in the full embedding space)",
+        fontsize=11,
+    )
+    fig.tight_layout()
+    return fig, axes

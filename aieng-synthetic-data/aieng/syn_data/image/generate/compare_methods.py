@@ -1296,7 +1296,10 @@ def _seg_to_control_image(
 ) -> Image.Image:
     colored = np.asarray(segmentation.colored_map, dtype=np.uint8)
     if colored.shape[0] != height or colored.shape[1] != width:
-        colored = cv2.resize(colored, (width, height), interpolation=cv2.INTER_NEAREST)
+        colored = np.asarray(
+            cv2.resize(colored, (width, height), interpolation=cv2.INTER_NEAREST),
+            dtype=np.uint8,
+        )
     if as_canny:
         gray = cv2.cvtColor(colored, cv2.COLOR_RGB2GRAY)
         edges = cv2.Canny(gray, 80, 160)

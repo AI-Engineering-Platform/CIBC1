@@ -604,7 +604,10 @@ def _depth_to_control_image(depth: DepthResult, width: int, height: int) -> Imag
     """Grayscale depth for ControlNet (near=bright). Avoid feeding the viz colormap."""
     d = np.asarray(depth.depth_map, dtype=np.float32)
     if d.shape != (height, width):
-        d = cv2.resize(d, (width, height), interpolation=cv2.INTER_CUBIC)
+        d = np.asarray(
+            cv2.resize(d, (width, height), interpolation=cv2.INTER_CUBIC),
+            dtype=np.float32,
+        )
     lo, hi = float(d.min()), float(d.max())
     d = (d - lo) / (hi - lo) if hi > lo else np.zeros_like(d)
     u8 = (np.clip(d, 0.0, 1.0) * 255.0).astype(np.uint8)
@@ -625,7 +628,10 @@ def _composite(
     h, w = base.shape[:2]
     weight_arr = np.asarray(weight, dtype=np.float32)
     if weight_arr.shape[:2] != (h, w):
-        weight_arr = cv2.resize(weight_arr, (w, h), interpolation=cv2.INTER_LINEAR)
+        weight_arr = np.asarray(
+            cv2.resize(weight_arr, (w, h), interpolation=cv2.INTER_LINEAR),
+            dtype=np.float32,
+        )
     soft = np.clip(cv2.GaussianBlur(weight_arr, (0, 0), max(blur_sigma, 0.5)), 0, 1)[
         ..., None
     ]
