@@ -6,10 +6,10 @@ These notebooks walks through **SynBench** end to end: loading a domain, generat
 
 You can also activate the environment in terminal using `source .venv/bin/activate` command.
 
-Then, copy env defaults into this directory and set your API key:
+
+
 ```bash
-# from implementations/agent_benchmark_generation/
-cp implementations/agent_benchmark_generation/.env.example .env   # Adjust the models if needed
+cp implementations/agent_benchmark_generation/.env.example .env   # then set OPENAI_API_KEY (and adjust models if needed)
 ```
 ---
 
@@ -27,6 +27,36 @@ SynBench builds **τ-bench–style** benchmarks for customer-service agents that
 - Rule-based verification: task-type write rules, replay, policy rules
 - Outcome-first scoring (`DB` + `COMMUNICATE`, matching τ-bench semantics)
 
+
+
+<div align="center">
+  <img src="./images/synbench_components.png" alt="Synbench Components" width="900">
+</div>
+
+
+
+## Pipeline steps (overview)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ 1. LOAD DOMAIN     policy + db.json + tools + seeds             │
+├─────────────────────────────────────────────────────────────────┤
+│ 2. GENERATE TASKS  LLM proposes scenario + oracle tool trace   │
+├─────────────────────────────────────────────────────────────────┤
+│ 3. VERIFY          policy rules → task types → replay → hash   │
+├─────────────────────────────────────────────────────────────────┤
+│ 4. RUN AGENT       multi-turn tool loop (single or pipeline)   │
+├─────────────────────────────────────────────────────────────────┤
+│ 5. SCORE           DB hash match + communicate_info substrings │
+└─────────────────────────────────────────────────────────────────┘
+
+```
+
+## Task Structure and Interactions
+
+<div align="center">
+  <img src="./images/task_structure.png" alt="Structure of a task and the roles in the pipeline" width="900">
+</div>
 
 
 ## Notebooks
@@ -62,22 +92,15 @@ Evaluates a **single tool-calling agent** on the verified tasks:
 
 Same setup and scoring as notebook 3, but runs **`AgentPipeline`** instead of a single agent. Per dialogue turn the roles are `user_sim` → `planner` → `executor` → `critic` (only the executor calls tools). Ends with batch metrics over the verified task set.
 
-## Pipeline steps (overview)
+### `5-saas-billing-scale.ipynb`
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ 1. LOAD DOMAIN     policy + db.json + tools + seeds             │
-├─────────────────────────────────────────────────────────────────┤
-│ 2. GENERATE TASKS  LLM proposes scenario + oracle tool trace   │
-├─────────────────────────────────────────────────────────────────┤
-│ 3. VERIFY          policy rules → task types → replay → hash   │
-├─────────────────────────────────────────────────────────────────┤
-│ 4. RUN AGENT       multi-turn tool loop (single or pipeline)   │
-├─────────────────────────────────────────────────────────────────┤
-│ 5. SCORE           DB hash match + communicate_info substrings │
-└─────────────────────────────────────────────────────────────────┘
+Uses the larger `domains/mock_saas_billing` world (48 accounts, 96
+subscriptions, and 192 invoices). It generates a stratified set of tasks for
+each of five task types across five personality styles and distinct accounts,
+verifies and saves the passing tasks, reloads them, and evaluates the
+multi-agent pipeline.
 
-```
+
 
 ## Evaluation semantics
 
@@ -93,8 +116,10 @@ Copy `domains/mock_retail/` and provide:
 3. `tools.py` — `get_tool_specs()` + `ToolKit` class
 4. `task_types.yaml` — per-type `allow_write`
 5. `user_simulator.yaml` — personas and goal templates
-6. `tasks.seed.json` — 2–3 hand-verified seed tasks
-7. `verify.py` - domain-specific rules to verify the generated tasks with.
+6. `tasks.seed.json` — hand-verified seed tasks
+7. `generation.yaml` — primary collection, related joins, generation hints,
+   and optional task-type eligibility filters
+8. `verify.py` — domain-specific rules for generated tasks
 
 
 ### Domain bundle files (`domains/mock_retail/`)
@@ -121,3 +146,33 @@ Each **Task** contains:
 
 - **`SingleToolAgent`** — one LLM runs a multi-turn tool-calling loop
 - **`AgentPipeline`** — per dialogue turn: `user_sim` → `planner` → `executor` → `critic`
+
+
+---
+
+## Who knows what
+
+SynBench uses several LLM roles and uses different LLMs. These LLMs have **different prompts and hidden fields**.
+That knowledge hierarchy is intentional: the generator can write a short oracle because it sees IDs, and task description, and has access to automatic policy checks (`verify.py` and eligibility constraints as defined in `generation.yaml`) during generation, however, the agent must elicit details from conversation only, and respect the policies according to `policy.md`.
+
+
+| Role | Prompt / config source | Sees | Hidden |
+|------|------------------------|------|--------|
+| **Generator LLM** | `PromptBuilder` + `generation.yaml` | Policy, tool specs, task-type rules, seed tasks, sampled `entity_context` (IDs + related user), personality style | — (most privileged; writes the oracle) |
+| **User simulator** | `user_simulator.yaml` + `user_scenario` | `user_name`, style catalog text, `instructions`, `initial_message`, live transcript | Policy, tools, DB, `task.description` |
+| **Agent under test** | `agent_system_prompt` (`agent_role` + `policy.md`) | Policy, tools, customer messages | `instructions`, `description`, oracle actions, raw DB |
+| **Planner / critic** (notebook 4) | Policy excerpts | Policy, live conversation (planner) / plan + tool trace + draft reply (critic) | `instructions`, `description`, oracle actions, raw DB |
+
+<div align="center">
+  <img src="./images/knowledge_hierarchy.png" alt="Knowledge hierarchy across SynBench LLM roles" width="900">
+</div>
+
+The figure shows the same hierarchy as a flow: the generator sees the sampled IDs and writes the oracle, the simulator only ever sees its slice of the task (`user_scenario`), and the agent under test sees policy plus customer messages and reaches the database only through tools. Solid arrows are live dialogue and tool calls; dashed arrows are data that code moves between roles. Regenerate it with `uv run --with matplotlib python images/knowledge_hierarchy_figure.py`.
+
+Dialogue details:
+
+- Turn 0 is `user_scenario.initial_message` sent **as-is**. The simulator does not rewrite it.
+- Later customer turns come from the user-simulator LLM, which should reveal IDs when asked, not dump everything unprompted.
+- The simulator ends the conversation with exactly `[[DONE]]`.
+
+---
