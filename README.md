@@ -64,7 +64,7 @@ eval "$(onboard --bootcamp-name pets-3-bootcamp --test-script aieng-synthetic-da
 
 On Coder, the loaded key is `OPENAI_API_KEY`. It calls models from multiple providers through the Vector Proxy (`https://proxy.vectorinstitute.ai/v1`), where usage is monitored. If a request fails, restart the workstation. If the key is still missing, run the command above.
 
-A loaded key is not enough on its own. Each topic also needs a proxy base URL and model names in a `.env` file at the repository root. Copy that topic's `.env.example` and adjust the models if needed. [Agent Benchmark Generation](implementations/agent_benchmark_generation/.env.example) sets `SYNBENCH_BASE_URL`; other topics set `OPENAI_BASE_URL`. Both should point at the Vector Proxy. Confirm access with [1-check_access_to_model.ipynb](implementations/agent_benchmark_generation/1-check_access_to_model.ipynb).
+A loaded key is not enough on its own. Follow the topic's setup instructions specified in the topic's README. Each topic also needs a proxy base URL and model names in a `.env` file at the repository root. Copy that topic's `.env.example` and adjust the models if needed. [Agent Benchmark Generation](implementations/agent_benchmark_generation/.env.example) sets `SYNBENCH_BASE_URL`; other topics set `OPENAI_BASE_URL`. Both should point at the Vector Proxy. Confirm access with [1-check_access_to_model.ipynb](implementations/agent_benchmark_generation/1-check_access_to_model.ipynb).
 
 ## Compute Resources
 
