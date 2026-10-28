@@ -1,0 +1,56 @@
+{
+  "model": "gpt-4o",
+  "seed": 42,
+  "n_chunks_sampled": 8,
+  "questions_per_chunk_requested": 7,
+  "quality": {
+    "controlled": {
+      "n": 56,
+      "question_valid_rate": 1.0,
+      "answer_nonempty_rate": 1.0,
+      "duplicate_rate": 0.25,
+      "evidence_exact_rate": 0.6429,
+      "abstention_correct_rate": 0.2857
+    },
+    "naive": {
+      "n": 56,
+      "question_valid_rate": 1.0,
+      "answer_nonempty_rate": 0.7321,
+      "duplicate_rate": 0.25,
+      "evidence_exact_rate": 0.4643,
+      "abstention_correct_rate": 0.0
+    }
+  },
+  "diversity": {
+    "controlled": {
+      "question_lexical_diversity": 0.1963,
+      "covered_chunks": 8,
+      "unique_questions": 41,
+      "chunk_coverage": 1.0
+    },
+    "naive": {
+      "question_lexical_diversity": 0.1963,
+      "covered_chunks": 8,
+      "unique_questions": 41,
+      "chunk_coverage": 1.0
+    }
+  },
+  "retrieval": {
+    "controlled": {
+      "recall_at_1": 0.875,
+      "recall_at_3": 0.925,
+      "mrr": 0.9108
+    },
+    "naive": {
+      "recall_at_1": 0.875,
+      "recall_at_3": 0.925,
+      "mrr": 0.9108
+    }
+  },
+  "caveats": [
+    "Exact evidence substring is not entailment validation",
+    "Naive prompting does not request evidence",
+    "Source-chunk recall may underestimate retrieval of other valid evidence",
+    "No manual answer correctness scoring is included"
+  ]
+}

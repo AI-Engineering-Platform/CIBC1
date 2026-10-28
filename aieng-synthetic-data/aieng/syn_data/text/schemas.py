@@ -24,10 +24,11 @@ class DocumentRole(StrEnum):
 
 
 class ParagraphSplit(StrEnum):
-    """Whether a paragraph is held out for evaluation or reserved for training."""
+    """Whether a paragraph is held out, reserved for training, or unsplit."""
 
     TEST = "test"
     TRAIN = "train"
+    ALL = "all"
 
 
 class GenerationStrategy(StrEnum):

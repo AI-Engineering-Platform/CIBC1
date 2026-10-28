@@ -126,6 +126,53 @@ To confirm CUDA on a GPU workspace:
 python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
 ```
 
+### Naive versus controlled RAG Q&A
+
+For a matched comparison between single-chunk plain-prompt Q&A and
+mode-targeted Q&A, open
+[`12_RAG_naive_vs_controlled.ipynb`](./12_RAG_naive_vs_controlled.ipynb). The
+notebook reuses the chunks and model client from
+[`11_RAG_naive.ipynb`](./11_RAG_naive.ipynb), and evaluates plain factual,
+format, vocabulary, multi-constraint, multi-chunk, out-of-scope, and
+not-specified modes. Set `RUN_GENERATION = True` in the notebook to generate
+records; the default avoids API calls and expects the two experiment JSONL
+files to have already been generated.
+
+The evaluation sample is stratified and evenly spaced across every available
+document rather than randomly selecting chunks from one document. Results are
+reported by document and mode so pooled averages do not hide document-specific
+failures. Increase `SAMPLES_PER_DOCUMENT` for a broader benchmark.
+
+The notebook also runs contract-compliance, document-robustness,
+question/chunk-coverage, bootstrap-confidence-interval, and matched-delta
+experiments. It saves the experiment tables and the final four-panel dashboard
+to `output/qa_experiments/`, including
+`naive_vs_controlled_dashboard.png`.
+
+### Standalone Visa agreement generation
+
+To generate notebook-02-style synthetic QA for the Visa agreement without a
+train/test split, run:
+
+```bash
+uv run python implementations/qa_text_generation/scripts/generate_visa_qa.py
+```
+
+The script extracts and chunks the PDF, generates prompt-strategy and
+instruction-back-translation samples from every chunk, and writes the
+unsplit corpus to `data/visa_synthetic/visa_qa_all.jsonl`. It also writes the
+two strategy-specific JSONL files, the extracted paragraphs, and
+`visa_qa_summary.json`. Use `--max-paragraphs`, `--questions-per-paragraph`,
+and `--target-size` to control generation cost.
+
+The same flow is available interactively in
+[02_Visa_synthetic_qa_generation.ipynb](./02_Visa_synthetic_qa_generation.ipynb).
+The Visa-specific client follows the PDF workflow and calls the OpenAI API
+directly at `https://api.openai.com/v1`, even when the shared
+`OPENAI_BASE_URL` is configured for another workflow. Set `OPENAI_API_KEY` and
+optionally `TEACHER_MODEL` (default: `gpt-4o`); use `VISA_OPENAI_BASE_URL` only
+when intentionally targeting a different OpenAI-compatible endpoint.
+
 
 ### 2. Local development (skip on Coder)
 
