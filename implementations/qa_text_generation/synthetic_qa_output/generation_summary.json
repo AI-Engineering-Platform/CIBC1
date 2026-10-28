@@ -1,0 +1,21 @@
+{
+  "source": "Visa_Credit_Card_Agreement.pdf",
+  "model": "gpt-4o",
+  "pages": 6,
+  "chunks_processed": 13,
+  "raw_count": 72,
+  "accepted_count": 70,
+  "rejected_count": 2,
+  "categories": {
+    "factual": 40,
+    "numerical": 7,
+    "reasoning": 10,
+    "unanswerable": 13
+  },
+  "limitations": [
+    "Quote matching does not establish semantic entailment.",
+    "Unanswerability is model-generated and requires manual verification against the full PDF.",
+    "The referenced Account Opening Disclosure is not included in this PDF.",
+    "Chunks are page-local; this version does not create cross-page multi-hop questions."
+  ]
+}
