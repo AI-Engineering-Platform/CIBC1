@@ -1,0 +1,133 @@
+{
+  "question_count": 200,
+  "answered_count": 200,
+  "sample_size": 200,
+  "sample_seed": 123,
+  "sampling": "random_without_replacement",
+  "source_split": "development",
+  "correctness_filter": true,
+  "answer_model": "gemini-3.5-flash",
+  "top_k": 5,
+  "overall": {
+    "n": 200,
+    "n_in_scope": 152,
+    "n_out_of_scope": 48,
+    "Recall@3": 0.954,
+    "Recall@5": 0.987,
+    "MRR": 0.879,
+    "reply_correct": 0.91,
+    "ROUGE-L": 0.59
+  },
+  "by_mode": {
+    "cfpb/format_non_compliance": {
+      "n": 38,
+      "n_in_scope": 38,
+      "n_out_of_scope": 0,
+      "Recall@3": 0.947,
+      "Recall@5": 1.0,
+      "MRR": 0.854,
+      "reply_correct": 0.974,
+      "ROUGE-L": 0.667
+    },
+    "cfpb/messy_questions": {
+      "n": 33,
+      "n_in_scope": 33,
+      "n_out_of_scope": 0,
+      "Recall@3": 0.97,
+      "Recall@5": 1.0,
+      "MRR": 0.826,
+      "reply_correct": 0.909,
+      "ROUGE-L": 0.628
+    },
+    "cfpb/multi_chunk": {
+      "n": 15,
+      "n_in_scope": 15,
+      "n_out_of_scope": 0,
+      "Recall@3": 0.867,
+      "Recall@5": 0.867,
+      "MRR": 0.967,
+      "reply_correct": 0.8,
+      "ROUGE-L": 0.368
+    },
+    "cfpb/multi_constraint_collapse": {
+      "n": 32,
+      "n_in_scope": 32,
+      "n_out_of_scope": 0,
+      "Recall@3": 0.969,
+      "Recall@5": 1.0,
+      "MRR": 0.852,
+      "reply_correct": 0.906,
+      "ROUGE-L": 0.554
+    },
+    "cfpb/out_of_domain": {
+      "n": 22,
+      "n_in_scope": 0,
+      "n_out_of_scope": 22,
+      "Recall@3": null,
+      "Recall@5": null,
+      "MRR": null,
+      "reply_correct": 1.0,
+      "ROUGE-L": null
+    },
+    "cfpb/plain_factual": {
+      "n": 34,
+      "n_in_scope": 34,
+      "n_out_of_scope": 0,
+      "Recall@3": 0.971,
+      "Recall@5": 1.0,
+      "MRR": 0.944,
+      "reply_correct": 1.0,
+      "ROUGE-L": 0.597
+    },
+    "sec/complex_structured": {
+      "n": 6,
+      "n_in_scope": 0,
+      "n_out_of_scope": 6,
+      "Recall@3": null,
+      "Recall@5": null,
+      "MRR": null,
+      "reply_correct": 0.333,
+      "ROUGE-L": null
+    },
+    "sec/near_miss": {
+      "n": 5,
+      "n_in_scope": 0,
+      "n_out_of_scope": 5,
+      "Recall@3": null,
+      "Recall@5": null,
+      "MRR": null,
+      "reply_correct": 0.8,
+      "ROUGE-L": null
+    },
+    "sec/plain_factual": {
+      "n": 4,
+      "n_in_scope": 0,
+      "n_out_of_scope": 4,
+      "Recall@3": null,
+      "Recall@5": null,
+      "MRR": null,
+      "reply_correct": 0.5,
+      "ROUGE-L": null
+    },
+    "sec/pressure": {
+      "n": 4,
+      "n_in_scope": 0,
+      "n_out_of_scope": 4,
+      "Recall@3": null,
+      "Recall@5": null,
+      "MRR": null,
+      "reply_correct": 0.75,
+      "ROUGE-L": null
+    },
+    "sec/protection": {
+      "n": 7,
+      "n_in_scope": 0,
+      "n_out_of_scope": 7,
+      "Recall@3": null,
+      "Recall@5": null,
+      "MRR": null,
+      "reply_correct": 1.0,
+      "ROUGE-L": null
+    }
+  }
+}

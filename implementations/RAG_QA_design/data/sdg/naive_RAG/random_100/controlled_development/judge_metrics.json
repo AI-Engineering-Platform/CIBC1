@@ -1,0 +1,134 @@
+{
+  "judge_model": "gpt-4o",
+  "answer_model": "gemini-3.5-flash",
+  "sample_size": 100,
+  "overall": {
+    "n_judged": 100,
+    "n_judge_failed": 0,
+    "answer_correctness": 0.88,
+    "factuality": 0.944,
+    "citation_accuracy": 0.931,
+    "instruction_following": 0.88,
+    "rule_violations": {
+      "R1": 3,
+      "R2": 3,
+      "R3": 10
+    }
+  },
+  "by_mode": {
+    "cfpb/format_non_compliance": {
+      "n_judged": 10,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.8,
+      "factuality": 0.8,
+      "citation_accuracy": 0.8,
+      "instruction_following": 0.8,
+      "rule_violations": {
+        "R2": 2,
+        "R3": 2
+      }
+    },
+    "cfpb/messy_questions": {
+      "n_judged": 10,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": 1.0,
+      "citation_accuracy": 1.0,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    },
+    "cfpb/multi_chunk": {
+      "n_judged": 12,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.917,
+      "factuality": 1.0,
+      "citation_accuracy": 0.917,
+      "instruction_following": 0.917,
+      "rule_violations": {
+        "R1": 1,
+        "R2": 1
+      }
+    },
+    "cfpb/multi_constraint_collapse": {
+      "n_judged": 17,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.882,
+      "factuality": 0.882,
+      "citation_accuracy": 0.882,
+      "instruction_following": 0.882,
+      "rule_violations": {
+        "R3": 2
+      }
+    },
+    "cfpb/out_of_domain": {
+      "n_judged": 11,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    },
+    "cfpb/plain_factual": {
+      "n_judged": 23,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": 1.0,
+      "citation_accuracy": 1.0,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    },
+    "sec/complex_structured": {
+      "n_judged": 4,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.25,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.25,
+      "rule_violations": {
+        "R3": 3
+      }
+    },
+    "sec/near_miss": {
+      "n_judged": 1,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    },
+    "sec/plain_factual": {
+      "n_judged": 3,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.333,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.333,
+      "rule_violations": {
+        "R1": 2,
+        "R3": 1
+      }
+    },
+    "sec/pressure": {
+      "n_judged": 3,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.333,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.333,
+      "rule_violations": {
+        "R3": 2
+      }
+    },
+    "sec/protection": {
+      "n_judged": 6,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    }
+  }
+}

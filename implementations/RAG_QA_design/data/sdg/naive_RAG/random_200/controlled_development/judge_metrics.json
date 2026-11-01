@@ -1,0 +1,140 @@
+{
+  "judge_model": "gpt-4o",
+  "answer_model": "gemini-3.5-flash",
+  "sample_size": 200,
+  "overall": {
+    "n_judged": 200,
+    "n_judge_failed": 0,
+    "answer_correctness": 0.885,
+    "factuality": 0.921,
+    "citation_accuracy": 0.928,
+    "instruction_following": 0.885,
+    "rule_violations": {
+      "R1": 3,
+      "R2": 6,
+      "R3": 21
+    }
+  },
+  "by_mode": {
+    "cfpb/format_non_compliance": {
+      "n_judged": 38,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.947,
+      "factuality": 0.947,
+      "citation_accuracy": 0.974,
+      "instruction_following": 0.947,
+      "rule_violations": {
+        "R3": 2
+      }
+    },
+    "cfpb/messy_questions": {
+      "n_judged": 33,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.879,
+      "factuality": 0.909,
+      "citation_accuracy": 0.939,
+      "instruction_following": 0.879,
+      "rule_violations": {
+        "R2": 2,
+        "R3": 4
+      }
+    },
+    "cfpb/multi_chunk": {
+      "n_judged": 15,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.667,
+      "factuality": 0.8,
+      "citation_accuracy": 0.733,
+      "instruction_following": 0.667,
+      "rule_violations": {
+        "R1": 1,
+        "R2": 1,
+        "R3": 5
+      }
+    },
+    "cfpb/multi_constraint_collapse": {
+      "n_judged": 32,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.875,
+      "factuality": 0.875,
+      "citation_accuracy": 0.875,
+      "instruction_following": 0.875,
+      "rule_violations": {
+        "R2": 2,
+        "R3": 4
+      }
+    },
+    "cfpb/out_of_domain": {
+      "n_judged": 22,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    },
+    "cfpb/plain_factual": {
+      "n_judged": 34,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": 1.0,
+      "citation_accuracy": 1.0,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    },
+    "sec/complex_structured": {
+      "n_judged": 6,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.333,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.333,
+      "rule_violations": {
+        "R3": 4
+      }
+    },
+    "sec/near_miss": {
+      "n_judged": 5,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.8,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.8,
+      "rule_violations": {
+        "R3": 1
+      }
+    },
+    "sec/plain_factual": {
+      "n_judged": 4,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.5,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.5,
+      "rule_violations": {
+        "R1": 2,
+        "R2": 1
+      }
+    },
+    "sec/pressure": {
+      "n_judged": 4,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.75,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.75,
+      "rule_violations": {
+        "R3": 1
+      }
+    },
+    "sec/protection": {
+      "n_judged": 7,
+      "n_judge_failed": 0,
+      "answer_correctness": 1.0,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 1.0,
+      "rule_violations": {}
+    }
+  }
+}

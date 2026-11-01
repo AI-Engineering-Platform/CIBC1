@@ -1,0 +1,43 @@
+{
+  "question_count": 200,
+  "answered_count": 200,
+  "sample_size": 200,
+  "sample_seed": 123,
+  "sampling": "random_without_replacement",
+  "source_split": "combined_naive_questions",
+  "correctness_filter": false,
+  "answer_model": "gemini-3.5-flash",
+  "top_k": 5,
+  "overall": {
+    "n": 200,
+    "n_in_scope": 115,
+    "n_out_of_scope": 85,
+    "Recall@3": 0.913,
+    "Recall@5": 0.948,
+    "MRR": 0.818,
+    "reply_correct": 0.745,
+    "ROUGE-L": 0.475
+  },
+  "by_mode": {
+    "cfpb/naive": {
+      "n": 115,
+      "n_in_scope": 115,
+      "n_out_of_scope": 0,
+      "Recall@3": 0.913,
+      "Recall@5": 0.948,
+      "MRR": 0.818,
+      "reply_correct": 0.948,
+      "ROUGE-L": 0.475
+    },
+    "sec/naive": {
+      "n": 85,
+      "n_in_scope": 0,
+      "n_out_of_scope": 85,
+      "Recall@3": null,
+      "Recall@5": null,
+      "MRR": null,
+      "reply_correct": 0.471,
+      "ROUGE-L": null
+    }
+  }
+}

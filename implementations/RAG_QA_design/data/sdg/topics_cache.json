@@ -1,0 +1,387 @@
+{
+ "cfpb_credit_card_agreement::p0000": [
+  "Consumer Credit Card Agreement",
+  "Credit Card Account Opening Disclosure",
+  "Visa Credit Card",
+  "Credit Union",
+  "Line-of-Credit Account"
+ ],
+ "cfpb_credit_card_agreement::p0001": [
+  "Credit limit management",
+  "Cash advances",
+  "Convenience checks",
+  "Stop payment requests",
+  "Account termination"
+ ],
+ "cfpb_credit_card_agreement::p0002": [
+  "Credit Card Agreement",
+  "Purchases with Credit Card",
+  "Cash Advances",
+  "ATM Transactions",
+  "Illegal Transactions with Credit Card"
+ ],
+ "cfpb_credit_card_agreement::p0003": [
+  "Promise to pay charges",
+  "Finance charges",
+  "Joint accounts",
+  "Credit Union agreement",
+  "Account authorization"
+ ],
+ "cfpb_credit_card_agreement::p0004": [
+  "Periodic rates for purchases, cash advances, and balance transfers",
+  "Penalty rates for late payments",
+  "Variable rate changes",
+  "Introductory discounted rates",
+  "Rate changes pursuant to applicable law"
+ ],
+ "cfpb_credit_card_agreement::p0005": [
+  "Finance charges on new purchases",
+  "Finance charges on cash advances",
+  "Calculation of average daily balance for purchases",
+  "Calculation of average daily balance for cash advances",
+  "Avoiding additional finance charges"
+ ],
+ "cfpb_credit_card_agreement::p0006": [
+  "Foreign Transactions",
+  "Exchange Rate",
+  "Visa Currency Conversion",
+  "Foreign Transaction Fee",
+  "Finance Charge on Foreign Transactions"
+ ],
+ "cfpb_credit_card_agreement::p0007": [
+  "Annual Fee",
+  "Balance Transfer Fee",
+  "Cash Advance Fee",
+  "Foreign Transaction Fee",
+  "Late Payment Fee"
+ ],
+ "cfpb_credit_card_agreement::p0008": [
+  "Minimum payment requirements",
+  "Credit card payment terms",
+  "Over credit limit charges",
+  "Payment posting delays",
+  "Credit limit replenishment"
+ ],
+ "cfpb_credit_card_agreement::p0009": [
+  "Payment Allocation",
+  "Credit Union Payment Policies",
+  "Excess Payment Allocation",
+  "Annual Percentage Rate",
+  "Minimum Periodic Payment"
+ ],
+ "cfpb_credit_card_agreement::p0010": [
+  "Security interest under the Uniform Commercial Code",
+  "Pledge of shares as collateral",
+  "Restrictions on withdrawal of pledged amounts",
+  "Use of other shares as security",
+  "Collateral securing other loans"
+ ],
+ "cfpb_credit_card_agreement::p0011": [
+  "Default conditions",
+  "Immediate payment demand",
+  "Finance charges after default",
+  "Security for account",
+  "Credit application misrepresentation"
+ ],
+ "cfpb_credit_card_agreement::p0012": [
+  "Liability for unauthorized use",
+  "Lost or stolen card notification",
+  "Credit card liability limit",
+  "Unauthorized transactions",
+  "Gross negligence in card handling"
+ ],
+ "cfpb_credit_card_agreement::p0013": [
+  "Changing account terms",
+  "Terminating account agreement",
+  "Obligation to pay account balance",
+  "Unauthorized transactions",
+  "Joint account termination"
+ ],
+ "cfpb_credit_card_agreement::p0014": [
+  "Authorized users",
+  "Account termination",
+  "Issuing additional cards",
+  "Account closure",
+  "Access checks"
+ ],
+ "cfpb_credit_card_agreement::p0015": [
+  "Credit review",
+  "Release of information",
+  "Credit standing investigation",
+  "Disclosure to credit bureaus",
+  "Emergency cash and card replacement services"
+ ],
+ "cfpb_credit_card_agreement::p0016": [
+  "Credit for returns",
+  "Account adjustments",
+  "Credit balance refunds",
+  "Future purchase application",
+  "Credit slip posting"
+ ],
+ "cfpb_credit_card_agreement::p0017": [
+  "Credit Union services",
+  "Travel accident insurance",
+  "Account enhancements",
+  "Additional benefits",
+  "Service withdrawal or change"
+ ],
+ "cfpb_credit_card_agreement::p0018": [
+  "Merchant disputes",
+  "Credit Union liability",
+  "Claims and defenses",
+  "Good faith attempts",
+  "Purchase conditions"
+ ],
+ "cfpb_credit_card_agreement::p0019": [
+  "joint account responsibility",
+  "individual liability in joint accounts",
+  "authorization for purchases in joint accounts",
+  "termination of joint accounts",
+  "credit union repayment requirements"
+ ],
+ "cfpb_credit_card_agreement::p0020": [
+  "Effect of Agreement",
+  "Contract Terms",
+  "Account Transactions",
+  "Sales Slips",
+  "Credit Slips"
+ ],
+ "cfpb_credit_card_agreement::p0021": [
+  "Credit Union rights",
+  "Enforcement delay",
+  "Rights retention",
+  "Waiver of rights",
+  "Legal enforcement"
+ ],
+ "cfpb_credit_card_agreement::p0022": [
+  "Statements and notices delivery",
+  "Credit Union communication",
+  "Address for notices",
+  "Joint account notice",
+  "Mailing of financial documents"
+ ],
+ "cfpb_credit_card_agreement::p0023": [
+  "Severability",
+  "Final Expression",
+  "Terms and Conditions",
+  "Written Agreement",
+  "Enforceability"
+ ],
+ "cfpb_credit_card_agreement::p0024": [
+  "Agreement and Disclosure",
+  "Acknowledgment of receipt"
+ ],
+ "cfpb_credit_card_agreement::p0025": [
+  "Internet gambling transactions",
+  "Electronic gambling",
+  "Card usage restrictions",
+  "Prohibited transactions",
+  "Internet transactions"
+ ],
+ "cfpb_credit_card_agreement::p0026": [
+  "Penalty Rate",
+  "Rate Increases",
+  "Purchases",
+  "Cash Advances",
+  "Balance Transfers"
+ ],
+ "cfpb_credit_card_agreement::p0027": [
+  "Voluntary Payment Protection",
+  "Loan balance",
+  "Interest charges",
+  "Insurance charges",
+  "Rate changes"
+ ],
+ "cfpb_credit_card_agreement::p0028": [
+  "Utah borrowers",
+  "written agreement",
+  "final expression of agreement",
+  "Credit Union",
+  "oral agreement"
+ ],
+ "cfpb_credit_card_agreement::p0029": [
+  "Co-signer liability",
+  "Fair Credit Billing Act",
+  "Error resolution process",
+  "Billing rights",
+  "Automated payment stop"
+ ],
+ "cfpb_credit_card_agreement::p0030": [
+  "error notification",
+  "investigation of errors",
+  "payment of disputed amounts",
+  "written communication requirements",
+  "electronic communication requirements"
+ ],
+ "cfpb_credit_card_agreement::p0031": [
+  "Error correction timeline",
+  "Billing dispute process",
+  "Interest charges during dispute",
+  "Credit reporting during dispute",
+  "Credit limit impact during dispute"
+ ],
+ "cfpb_credit_card_agreement::p0032": [
+  "Billing disputes",
+  "Interest and fees",
+  "Delinquency reporting",
+  "Consumer rights",
+  "Debt settlement"
+ ],
+ "cfpb_credit_card_agreement::p0033": [
+  "Credit card purchases",
+  "Consumer rights",
+  "Dispute resolution",
+  "Merchant disputes",
+  "Payment obligations"
+ ],
+ "cfpb_credit_card_agreement::p0034": [
+  "Credit card purchase disputes",
+  "Consumer protection rights",
+  "Credit card billing investigations",
+  "Delinquency reporting",
+  "Purchase location and price criteria"
+ ],
+ "sec_investor_bulletin::p0000": [
+  "Protecting online investment accounts",
+  "Fraud prevention",
+  "Cybercrime",
+  "Safeguarding personal financial information",
+  "Online security tips for investors"
+ ],
+ "sec_investor_bulletin::p0001": [
+  "investment accounts",
+  "passphrases",
+  "password security",
+  "character count requirements",
+  "personal information security"
+ ],
+ "sec_investor_bulletin::p0002": [
+  "investment account security",
+  "strong password creation",
+  "password management",
+  "password security practices",
+  "password change frequency"
+ ],
+ "sec_investor_bulletin::p0003": [
+  "passkeys in investment accounts",
+  "security in investment accounts",
+  "private key storage",
+  "investment account website features",
+  "device compatibility with passkeys"
+ ],
+ "sec_investor_bulletin::p0004": [
+  "two-step verification",
+  "multi-factor authentication",
+  "investment firm security",
+  "account access security",
+  "unique code for login"
+ ],
+ "sec_investor_bulletin::p0005": [
+  "investment account security",
+  "authenticator app usage",
+  "two-factor authentication",
+  "sign-in confirmation",
+  "third-party authentication services"
+ ],
+ "sec_investor_bulletin::p0006": [
+  "account alerts",
+  "online investment account",
+  "fraud monitoring",
+  "email notifications",
+  "text message alerts"
+ ],
+ "sec_investor_bulletin::p0007": [
+  "Securities transactions",
+  "Transfers of money or securities",
+  "External financial account management",
+  "Investment firm account alerts",
+  "Online account security features"
+ ],
+ "sec_investor_bulletin::p0008": [
+  "biometric safeguards",
+  "brokerage firm",
+  "investment adviser",
+  "online investment accounts",
+  "mobile device security"
+ ],
+ "sec_investor_bulletin::p0009": [
+  "Password management for financial accounts",
+  "Security of online financial accounts",
+  "Risks of using the same password for multiple accounts",
+  "Importance of unique passwords for financial security",
+  "Password security strategies for financial services"
+ ],
+ "sec_investor_bulletin::p0010": [
+  "Investment account security",
+  "Public computer risks",
+  "Accessing investment accounts",
+  "Security measures for investments",
+  "Public computer usage"
+ ],
+ "sec_investor_bulletin::p0011": [
+  "investment account security",
+  "public computer risks",
+  "password management",
+  "online session termination",
+  "data privacy"
+ ],
+ "sec_investor_bulletin::p0012": [
+  "wireless connections",
+  "online investment accounts",
+  "computer security",
+  "software updates",
+  "anti-virus software"
+ ],
+ "sec_investor_bulletin::p0013": [
+  "public wireless network security",
+  "internet traffic eavesdropping",
+  "protecting sensitive data",
+  "account security on public networks",
+  "password protection on public Wi-Fi"
+ ],
+ "sec_investor_bulletin::p0014": [
+  "general finance interpretation"
+ ],
+ "sec_investor_bulletin::p0015": [
+  "software security updates",
+  "privacy settings management",
+  "data-sharing minimization",
+  "account security",
+  "phishing awareness"
+ ],
+ "sec_investor_bulletin::p0016": [
+  "Phishing",
+  "Identity theft",
+  "Malicious software",
+  "Fraud prevention",
+  "Cybersecurity threats"
+ ],
+ "sec_investor_bulletin::p0017": [
+  "Online security for investors",
+  "Legitimacy of business links",
+  "Mobile device security",
+  "Unauthorized access to investment accounts",
+  "Investment account protection"
+ ],
+ "sec_investor_bulletin::p0018": [
+  "Mobile device security",
+  "Biometric safeguards",
+  "Wi-Fi security settings",
+  "Remote location and device wiping",
+  "Storing financial information in the cloud"
+ ],
+ "sec_investor_bulletin::p0019": [
+  "Cloud service provider reputation",
+  "Two-step verification for cloud accounts",
+  "Encryption of cloud-stored information",
+  "Password protection for sensitive documents",
+  "Reviewing investment account statements for suspicious activity"
+ ],
+ "sec_investor_bulletin::p0020": [
+  "account information accuracy",
+  "transaction authorization",
+  "unauthorized transactions",
+  "written complaints to investment firms",
+  "record keeping of communications with investment firms"
+ ]
+}

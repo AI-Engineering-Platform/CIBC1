@@ -1,0 +1,88 @@
+{
+  "sample_size": 100,
+  "rag": {
+    "n": {
+      "naive": 100,
+      "controlled_development": 100,
+      "delta": 0
+    },
+    "n_in_scope": {
+      "naive": 57,
+      "controlled_development": 72,
+      "delta": 15
+    },
+    "n_out_of_scope": {
+      "naive": 43,
+      "controlled_development": 28,
+      "delta": -15
+    },
+    "Recall@3": {
+      "naive": 0.93,
+      "controlled_development": 0.896,
+      "delta": -0.034
+    },
+    "Recall@5": {
+      "naive": 0.93,
+      "controlled_development": 0.944,
+      "delta": 0.014
+    },
+    "MRR": {
+      "naive": 0.865,
+      "controlled_development": 0.875,
+      "delta": 0.01
+    },
+    "reply_correct": {
+      "naive": 0.78,
+      "controlled_development": 0.89,
+      "delta": 0.11
+    },
+    "ROUGE-L": {
+      "naive": 0.494,
+      "controlled_development": 0.538,
+      "delta": 0.044
+    }
+  },
+  "llm_judge": {
+    "n_judged": {
+      "naive": 100,
+      "controlled_development": 100,
+      "delta": 0
+    },
+    "n_judge_failed": {
+      "naive": 0,
+      "controlled_development": 0,
+      "delta": 0
+    },
+    "answer_correctness": {
+      "naive": 0.86,
+      "controlled_development": 0.88,
+      "delta": 0.02
+    },
+    "factuality": {
+      "naive": 0.965,
+      "controlled_development": 0.944,
+      "delta": -0.021
+    },
+    "citation_accuracy": {
+      "naive": 1.0,
+      "controlled_development": 0.931,
+      "delta": -0.069
+    },
+    "instruction_following": {
+      "naive": 0.87,
+      "controlled_development": 0.88,
+      "delta": 0.01
+    },
+    "rule_violations": {
+      "naive": {
+        "R3": 13
+      },
+      "controlled_development": {
+        "R1": 3,
+        "R2": 3,
+        "R3": 10
+      },
+      "delta": null
+    }
+  }
+}

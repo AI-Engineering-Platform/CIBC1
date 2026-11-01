@@ -1,0 +1,45 @@
+{
+  "judge_model": "gpt-4o",
+  "answer_model": "gemini-3.5-flash",
+  "sample_size": 200,
+  "overall": {
+    "n_judged": 200,
+    "n_judge_failed": 0,
+    "answer_correctness": 0.81,
+    "factuality": 0.965,
+    "citation_accuracy": 0.983,
+    "instruction_following": 0.805,
+    "rule_violations": {
+      "R1": 6,
+      "R2": 2,
+      "R3": 36
+    }
+  },
+  "by_mode": {
+    "cfpb/naive": {
+      "n_judged": 115,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.965,
+      "factuality": 0.965,
+      "citation_accuracy": 0.983,
+      "instruction_following": 0.965,
+      "rule_violations": {
+        "R2": 1,
+        "R3": 4
+      }
+    },
+    "sec/naive": {
+      "n_judged": 85,
+      "n_judge_failed": 0,
+      "answer_correctness": 0.6,
+      "factuality": null,
+      "citation_accuracy": null,
+      "instruction_following": 0.588,
+      "rule_violations": {
+        "R1": 6,
+        "R2": 1,
+        "R3": 32
+      }
+    }
+  }
+}
