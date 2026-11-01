@@ -93,6 +93,21 @@ The Step 8 evaluation judge checks these instruction-following rules. The curren
 
 The most frequent judge-flagged instruction violation was R3 (incorrect use of the prescribed not-specified reply): 36 naive versus 21 controlled. R1 protection-reply violations were 6 versus 3; R2 Sources-line violations were 2 versus 6. In the controlled sample, `multi_chunk` was a notable weak spot (15 questions; answer correctness 0.667 and citation accuracy 0.733).
 
+**Which controlled modes failed instruction following?** The judge marked 23 of 200 controlled answers false for instruction following, tied with answer correctness for the largest false count among the four judge criteria. The mode breakdown shows where those failures clustered:
+
+| Controlled mode | Instruction-following failures / questions | Failure rate |
+|---|---:|---:|
+| `sec/complex_structured` | 4 / 6 | 66.7% |
+| `sec/plain_factual` | 2 / 4 | 50.0% |
+| `cfpb/multi_chunk` | 5 / 15 | 33.3% |
+| `sec/pressure` | 1 / 4 | 25.0% |
+| `sec/near_miss` | 1 / 5 | 20.0% |
+| `cfpb/multi_constraint_collapse` | 4 / 32 | 12.5% |
+| `cfpb/messy_questions` | 4 / 33 | 12.1% |
+| `cfpb/format_non_compliance` | 2 / 38 | 5.3% |
+
+This mode-level view makes the controlled set useful for diagnosis, not just scoring: it points to likely stress points such as following complex structured requests and combining evidence across chunks, which can guide targeted prompt or retrieval changes and focused regression tests. Interpret rates alongside their denominators; the high percentages for SEC modes come from very small samples, while `multi_chunk` has the highest absolute failure count. The naive set has no mode labels, so it cannot provide the same failure attribution.
+
 The comparison is exploratory, not a controlled causal experiment. The samples have different in-scope/out-of-scope proportions (115/85 naive versus 152/48 controlled), different question modes, and different chunk-split provenance. Retrieval, ROUGE-L, factuality, and citation metrics use only the in-scope subset; reply correctness and all other judge metrics use all 200 questions. Each result is one random sample, with no confidence intervals.
 
 ## Conclusion
