@@ -330,7 +330,7 @@ Split by chunk, so no chunk appears in two splits.
   key only allows `gpt-4o`, `gemini-3.5-flash` and `gemini-2.5-flash`.
 - ROUGE-L only counts word overlap and penalises correct answers that are worded
   differently, so read it together with the judge.
-- Question generation uses temperature 0.7, so each run writes a new naive set. Save the
+- Question generation uses temperature 0.1, so each run writes a new naive set. Save the
   set before comparing runs.
 
 ## 8. Remaining metrics
@@ -346,9 +346,10 @@ Storage helpers for typed JSONL are in `text/io.py` (`save_typed_jsonl`,
 Notebooks in this folder:
 1. `00-RAG_naive.ipynb`: prepare, index, naive RAG, naive Q&A, evaluation (done)
 2. Controlled generation and filtering
-3. Validation diagnosis
-4. Tuning
-5. Final test
+3. 2 layer Synthetic Generation - Boost on ROUGE-L and RAGAS 
+4. Validation diagnosis
+5. Tuning
+6. Final test
 
 The final result is one comparison of the naive and controlled sets, and of the
 baseline and tuned agent.
